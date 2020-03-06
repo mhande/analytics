@@ -1,0 +1,40 @@
+version: "3.1"
+services:
+ zookeeper:
+   image: confluentinc/cp-zookeeper:latest
+   environment:
+     ZOOKEEPER_SERVER_ID: 1
+     ZOOKEEPER_CLIENT_PORT: 2181
+     ZOOKEEPER_TICK_TIME: 2000
+     ZOOKEEPER_INIT_LIMIT: 5
+     ZOOKEEPER_SYNC_LIMIT: 2
+   network_mode: host
+ kafka-1:
+   image: confluentinc/cp-kafka:latest
+   network_mode: host
+   environment:
+     KAFKA_BROKER_ID: 1
+     KAFKA_ZOOKEEPER_CONNECT: 192.168.99.100:2181
+     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.99.100:9092
+   ports:
+      - "9092:9092"
+ 
+ kafka-2:
+   image: confluentinc/cp-kafka:latest
+   network_mode: host
+   environment:
+     KAFKA_BROKER_ID: 2
+     KAFKA_ZOOKEEPER_CONNECT: 192.168.99.100:2181
+     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.99.100:9093
+   ports:
+      - "9093:9093"
+ 
+ kafka-3:
+   image: confluentinc/cp-kafka:latest
+   network_mode: host
+   environment:
+     KAFKA_BROKER_ID: 3
+     KAFKA_ZOOKEEPER_CONNECT: 192.168.99.100:2181
+     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.99.100:9094
+   ports:
+      - "9094:9094"
