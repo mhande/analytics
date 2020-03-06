@@ -1,0 +1,4 @@
+pykafka
+requests
+matplotlib
+boto3
